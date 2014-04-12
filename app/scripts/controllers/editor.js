@@ -8,4 +8,4 @@ angular.module('testApp')
 	$scope.htmlcontent = $scope.orightml;
 	$scope.disabled = false;
 
-  });
+});
