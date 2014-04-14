@@ -7,7 +7,8 @@ angular
     'ngSanitize',
     'ngRoute',
     'textAngular',
-    'angularBootstrapNavTree'
+    'angularBootstrapNavTree',
+    'angularLocalStorage'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -18,10 +19,6 @@ angular
       .when('/editor', {
         templateUrl: 'views/editor.html',
         controller: 'EditorCtrl'
-      })
-      .when('/tree', {
-        templateUrl: 'views/tree.html',
-        controller: 'TreeCtrl'
       })
       .otherwise({
         redirectTo: '/'

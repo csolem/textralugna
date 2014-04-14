@@ -1,5 +1,36 @@
-<p>This is the editor view.</p>
-<div text-angular="text-angular" name="htmlcontent" ng-model="htmlcontent" ta-disabled='disabled'></div>
+<div class="container-fluid">
+	<div class="row">
 
-<hr>
-{{ htmlcontent }}
+		<div class="col-md-3">
+			<h3>Recent articles</h3>
+			
+			<div ng-repeat="article in recentArticles track by article.id" 
+					on-click="edit(article)">
+					<button class="btn btn-primary btn-sm" ng-click="edit(article)">{{ article.title | limitTo:27 }}</button>	
+
+			</div>
+			<br>
+		</div>
+
+		<div class="col-md-9">
+			<input type="text" class="form-control" ng-model="currentArticle.title"></input>
+			<button type="button" class="btn btn-success" ng-click="oldSchoolSave()">
+				Old school save
+			</button>
+			<button type="button" class="btn btn-success" ng-click="createNew()">
+				New article
+			</button>
+			<button type="button" class="btn btn-danger" ng-click="clearAll()">
+				Clear local storage
+			</button>
+			<button ng-if="currentArticle.id != null" type="button" class="btn btn-warning" ng-click="delete(currentArticle)">
+				Delete article
+			</button>
+
+			<div text-angular="text-angular" name="htmlContent" ng-model="currentArticle.htmlContent" ta-disabled='disabled'></div>
+
+			<kbd>{{ currentArticle.htmlContent }}</kbd>
+		</div>
+	 <!-- {{ recentArticles }} -->
+	</div>
+</div>
