@@ -20,12 +20,17 @@ angular.module('testApp')
         articles = [];        
       }      
       if(article.id) {
-        console.log("already saved. Remove first");
-        removeArticle(article.id);
+        console.log("already saved. Overwrite");
+        for(var index in articles) {    
+          if(articles[index].id == article.id) {
+            articles[index] = article;
+          }
+        }
+      } else {
+        article.id = new Date().getTime();
+        articles.push(article);        
       }
 
-      article.id = new Date().getTime();
-      articles.push(article);
       storage.set('articles', articles);
 
     };
