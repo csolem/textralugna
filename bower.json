@@ -12,7 +12,8 @@
     "angular-sanitize": "1.2.15",
     "angular-route": "1.2.15",
     "textAngular": "1.2.0",
-    "angular-bootstrap-nav-tree": ""
+    "angular-bootstrap-nav-tree": "",
+    "angularLocalStorage": ""
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",
