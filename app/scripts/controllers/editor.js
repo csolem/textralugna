@@ -1,40 +1,82 @@
 'use strict';
 
 angular.module('testApp')
-  .controller('EditorCtrl', ['$scope', 'Article', function ($scope, Article) {
+  .controller('EditorCtrl', ['$scope', '$compile', 'ArticleFactory', 'SearchFactory', function ($scope, $compile, ArticleFactory, SearchFactory) {
 
     $scope.createNew= function() {
-        $scope.currentArticle = { title: "new article "+new Date().getTime(), type: "article", htmlContent : ""};
+        $scope.currentArticle = { title: "new article "+new Date().getTime(), type: "article", htmlContent : "", relations : []};
     };
 
     $scope.createNew();
 
-	//$scope.orightml = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li>Super Easy <b>Theming</b> Options</li><li style="color: green;">Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li class="text-danger">Doesn&apos;t Use an iFrame</li><li>Works with Firefox, Chrome, and IE8+</li></ol><p><b>Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a> </p>';
 	$scope.disabled = false;
 
-	$scope.recentArticles = Article.get();
+	$scope.recentArticles = ArticleFactory.get();
 
     $scope.oldSchoolSave = function() {
-    	Article.save($scope.currentArticle);
-        $scope.recentArticles = Article.get();
+    	ArticleFactory.save($scope.currentArticle);
+        $scope.recentArticles = ArticleFactory.get();
     };
 
     $scope.clearAll = function() {
-    	Article.clearAll();
+    	ArticleFactory.clearAll();
         $scope.recentArticles = [];
     };
 
 	$scope.edit = function(article) {
 	  $scope.currentArticle = article;
+      if(!$scope.currentArticle.relations) {
+        $scope.currentArticle.relations = [];
+      }
     };
 
     $scope.delete = function(article) {
     	console.log("Deleting article "+article.id);
-    	Article.remove(article.id);
-        $scope.recentArticles = Article.get();
+    	ArticleFactory.remove(article.id);
+        $scope.recentArticles = ArticleFactory.get();
         $scope.createNew();
     };
 
+    $scope.search = {query : ""};
 
+    $scope.executeSearch = function() {
+        $scope.search.results = SearchFactory.search($scope.search.query);
+    };
+
+    $scope.addRelation = function(item) {
+        for(var i = 0; i < $scope.currentArticle.relations.length; i++) {
+           if($scope.currentArticle.relations[i].id == item.id) {
+            console.log("Ignore: already in the list of relations");
+            return;
+           }
+        }
+        $scope.currentArticle.relations.push(item);
+    };
+
+    $scope.removeRelation = function(item) {
+        for(var i = 0; i < $scope.currentArticle.relations.length; i++) {
+            if($scope.currentArticle.relations[i].id == item.id) {
+                $scope.currentArticle.relations.splice(i, 1);
+            }
+        }
+    };
+
+    $scope.isRelation = function(item) {
+        for(var i = 0; i < $scope.currentArticle.relations.length; i++) {
+            if($scope.currentArticle.relations[i].id == item.id) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    $scope.insertInlineImage = function(item) {
+        //https://github.com/fraywing/textAngular/issues/51
+        //https://github.com/fraywing/textAngular/issues/54
+        //TODO: at least use a directive
+
+        //var html = $compile("<br>hello<br>")($scope);
+        //$scope.currentArticle.htmlContent = $scope.currentArticle.htmlContent +html;
+    }
 
 }]);
