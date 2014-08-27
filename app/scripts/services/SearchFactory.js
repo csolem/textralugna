@@ -10,7 +10,9 @@ angular.module('testApp')
         {
           id: "1.123",
           type: "article",
-          title: "17. mai er en festdag, ikke en programmeringsdag"
+          title: "17. mai er en festdag, ikke en programmeringsdag",
+          published: "2005-05-03T00:04:00+02",
+          version: 1163428374
         },
         {
           id: "1.234",
@@ -20,8 +22,8 @@ angular.module('testApp')
         {
           id: "1.345",
           type: "image",
-          title: "Hestesport",
-          src: "http://gfx.nrk.no/front/2014/08/27/c=0,37,607,291;w=198;h=95;15909.jpg"
+          title: "tux",
+          src: "http://oi49.tinypic.com/2426i9s.jpg"
         }
       ];
       return searchResult;
