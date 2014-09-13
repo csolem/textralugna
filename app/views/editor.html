@@ -1,79 +1,13 @@
-<div class="container-fluid">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a ng-href="#">Home</a></li>
-  </ul>
-	<div class="row">
-
-		<div class="col-lg-3">
-			<div class="row">
-				<h3>Recent articles</h3>
-				
-				<div ng-repeat="article in recentArticles track by article.id" 
-						on-click="edit(article)">
-						<button class="btn btn-primary btn-sm" ng-click="edit(article)">{{ article.title | limitTo:27 }}</button>	
-				</div>
-			</div>
-			<div class="row">
-				<h3>Article relations</h3>
-				<div ng-repeat="relation in currentArticle.relations track by relation.id">			
-					<div ng-if="relation.type == 'image'">
-						<img src="{{ relation.src }}" />
-						<a href="" ng-click="removeRelation(relation)">Remove</a>
-						<a href="" ng-click="insertInlineImage(relation)">Insert</a>
-					</div>
-					<div ng-if="relation.type == 'fact' || relation.type == 'article'">
-						<button class="btn btn-primary btn-sm">{{ relation.title | limitTo:27 }}</button>
-						<a href="" ng-click="removeRelation(relation)">Remove</a>
-					</div>
-				</div>
-			</div>
-
-		</div>
-
-
-		<div class="col-lg-6">
-			<input type="text" class="form-control" ng-model="currentArticle.title"></input>
-			<button type="button" class="btn btn-success" ng-click="oldSchoolSave()">
-				Old school save
-			</button>
-			<button type="button" class="btn btn-success" ng-click="createNew()">
-				New article
-			</button>
-			<button type="button" class="btn btn-danger" ng-click="clearAll()">
-				Clear local storage
-			</button>
-			<button ng-if="currentArticle.id != null" type="button" class="btn btn-warning" ng-click="delete(currentArticle)">
-				Delete article
-			</button>
-
-			<div text-angular="text-angular" name="htmlContent" ng-model="currentArticle.htmlContent" ta-disabled='disabled'></div>
-
-			<kbd>{{ currentArticle.htmlContent }}</kbd>
-		</div>
-
-		<div class="col-lg-3">
-			
-			<div class="row">
-				<h3>Search</h3>
-
-				<input type='text' ng-model="search.query"/>
-		 	 	<button class="btn btn-success" ng-click="executeSearch()">Search</button>
-		  		
-		  		<div ng-repeat="item in search.results" on-click="edit(item)">
-		  			<div ng-show="!isRelation(item)">
-						<div ng-if="item.type == 'image'">
-							<a href="" ng-click="addRelation(item)">Add</a>
-							<div class="">{{ item.id }}</div>
-							<img src="{{ item.src }}" />
-						</div>
-						<div ng-if="item.type != 'image'">
-							<a href="" ng-click="addRelation(item)">Add</a>
-							<button class="btn btn-primary btn-sm">	{{ item.title | limitTo:27 }} {{ item.id }}</button>	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	 <!-- {{ recentArticles }} -->
-	</div>
-</div>
+<ui-rich-text-editor ui:placeholder="Enter some text…" ui:config="{
+      paragraphs: true,
+      commands: [
+        'bold', 'italic', 'strikeThrough',
+        'removeFormat', 'linkPrompt', 'unlink',
+        'insertUnorderedList', 'insertOrderedList',
+        'blockquote', 'quote', 'h2',
+        'undo', 'redo'
+      ]
+    }" ng:model="editorModel" class="scribe"></ui-rich-text-editor>
+<h2>Output</h2>
+<textarea class="scribe-html" rows="15"></textarea>
+    

@@ -1,22 +1,34 @@
 {
-  "name": "test",
+  "name": "textralunga",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.15",
-    "json3": "~3.2.6",
-    "es5-shim": "~2.1.0",
-    "jquery": "~1.11.0",
-    "bootstrap-sass-official": "~3.1.0",
-    "angular-resource": "1.2.15",
-    "angular-cookies": "1.2.15",
-    "angular-sanitize": "1.2.15",
-    "angular-route": "1.2.15",
-    "textAngular": "1.2.0",
-    "angular-bootstrap-nav-tree": "",
-    "angularLocalStorage": ""
+    "angular": "1.2.16",
+    "json3": "~3.3.1",
+    "requirejs": "~2.1.14",
+    "es5-shim": "~3.1.0",
+    "bootstrap": "~3.2.0",
+    "angular-resource": "1.2.16",
+    "angular-cookies": "1.2.16",
+    "angular-sanitize": "1.2.16",
+    "angular-animate": "1.2.16",
+    "angular-touch": "1.2.16",
+    "angular-route": "1.2.16",
+    "scribe": "0.1.4",
+    "scribe-plugin-blockquote-command": "0.1.0",
+    "scribe-plugin-curly-quotes": "0.1.1",
+    "scribe-plugin-formatter-plain-text-convert-new-lines-to-html": "0.1.0",
+    "scribe-plugin-heading-command": "0.1.0",
+    "scribe-plugin-intelligent-unlink-command": "0.1.0",
+    "scribe-plugin-keyboard-shortcuts": "0.1.0",
+    "scribe-plugin-link-prompt-command": "0.1.0",
+    "scribe-plugin-sanitizer": "0.1.0",
+    "scribe-plugin-smart-lists": "0.1.0",
+    "scribe-plugin-toolbar": "0.1.1",
+    "lodash": "~2.4.1"
   },
   "devDependencies": {
-    "angular-mocks": "1.2.15",
-    "angular-scenario": "1.2.15"
-  }
+    "angular-mocks": "1.2.16",
+    "angular-scenario": "1.2.16"
+  },
+  "appPath": "app"
 }

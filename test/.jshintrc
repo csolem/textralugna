@@ -19,18 +19,13 @@
   "trailing": true,
   "smarttabs": true,
   "globals": {
-    "after": false,
-    "afterEach": false,
     "angular": false,
-    "before": false,
-    "beforeEach": false,
-    "browser": false,
-    "describe": false,
-    "expect": false,
-    "inject": false,
-    "it": false,
-    "jasmine": false,
-    "spyOn": false
+    /* AMD */
+    "define": false,
+    /* Custom */
+    "ngRoutes": false,
+    "ngSanitize": false,
+    "ngCookies": false,
+    "ngResource": false
   }
 }
-
